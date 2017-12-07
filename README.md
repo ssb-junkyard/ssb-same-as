@@ -9,6 +9,7 @@ Based on [ssb-friends](https://github.com/ssbc/ssb-friends) and [graphreduce]((h
 ## TODO
 
 - [ ] need to test merge blocking and unmerging
+- [ ] hook into replication to ensure the correct feeds are replicated
 
 ## Spec
 
