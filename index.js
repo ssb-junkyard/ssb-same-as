@@ -65,12 +65,12 @@ exports.init = function (sbot, config) {
     })
   }
 
-  function createSameAsStream (opts) {
-    opts = opts || {}
+  function createSameAsStream ({live = false, sync = true, old = true} = {}) {
+    var isSync = false
     var sameAs = {}
 
     return pull(
-      index.stream(opts),
+      index.stream({live}),
       pull.filter(),
       FlatMap(function (value) {
         var result = []
@@ -94,6 +94,15 @@ exports.init = function (sbot, config) {
             }
           }
         })
+
+        if (!isSync) {
+          isSync = true
+          if (old === true) {
+            if (sync && live) result.push({sync: true})
+          } else {
+            return []
+          }
+        }
 
         return result
 

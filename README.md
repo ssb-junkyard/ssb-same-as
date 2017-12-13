@@ -10,6 +10,7 @@ Based on [ssb-friends](https://github.com/ssbc/ssb-friends) and [graphreduce]((h
 
 - [ ] need to test merge blocking and unmerging
 - [ ] hook into replication to ensure the correct feeds are replicated
+- [ ] improve realtime performance (avoid re-traversing entire graph)
 
 ## Spec
 
@@ -59,7 +60,7 @@ This module uses graphreduce to walk the `sameAs` links, so this means that any 
 
 ## Exposed API (as sbot plugin)
 
-### sbot.sameAs.stream({live: false}) _source_
+### sbot.sameAs.stream({live: false, sync: true, old: true}) _source_
 
 Gets a list of all of the resolved and verified `sameAs` links between feeds.
 
